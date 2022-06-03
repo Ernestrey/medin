@@ -1,0 +1,18 @@
+stages:
+  - publish
+ 
+sitesoft-master:
+  stage: publish
+  script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_KEY")
+    - mkdir -p ~/.ssh
+    - cd /web/sources/$PROJECT
+    - git checkout master
+    - git pull origin master
+    - rm -rf /web/markup/$PROJECT
+    - cp -r /web/sources/$PROJECT/dist /web/markup/$PROJECT
+  only:
+    - master
+  tags:
+    - master

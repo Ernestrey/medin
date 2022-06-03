@@ -1,0 +1,5 @@
+build/**/*.css
+app/vendors/**/*
+app/static/**/*
+dist/
+dist-ui/
