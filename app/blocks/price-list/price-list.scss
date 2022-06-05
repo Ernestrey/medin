@@ -2,6 +2,33 @@
   margin-bottom: 40px;
 }
 
+#employees_list {
+  padding: 0;
+}
+
+#employees_list li {
+  margin-bottom: 30px;
+  list-style-type: none;
+}
+
+#employees_list li::marker {
+  content: '';
+}
+
+#employees_list li:first-child {
+  margin-top: 30px;
+}
+
+#employees_list li img {
+  width: 10%;
+  margin-right: 30px;
+}
+
+#employees_list li span {
+  font-size: 24px;
+  color: #000;
+}
+
 .slider {
   position: relative;
   margin-left: 20px;
@@ -113,9 +140,11 @@
     font-size: 14px;
     line-height: 16px;
     color: #000;
+
     p {
       margin-top: 8px;
       margin-bottom: 0;
+
       &:first-child {
         margin-top: 0;
       }
@@ -126,9 +155,11 @@
     font-size: 14px;
     line-height: 16px;
     color: #000;
+
     p {
       margin-top: 8px;
       margin-bottom: 0;
+
       &:first-child {
         margin-top: 0;
       }
