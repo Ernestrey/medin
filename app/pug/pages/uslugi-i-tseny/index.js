@@ -3,14 +3,14 @@ if (process.env.NODE_ENV !== 'production') {
   require('./index.pug')
 }
 
-const diagram_json =
+const diagramJson =
   '{"bars": [{"category": "Jan","data": 2.3},{"category": "Feb","data": 3.1},' +
   '{"category": "Mar","data": 4},{"category": "Apr","data": 10.1},{"category": "May","data": 4},' +
   '{"category": "Jun","data": 3.6},{"category": "Jul","data": 3.2},{"category": "Aug","data": 2.3},' +
   '{"category": "Sep","data": 1.4},{"category": "Oct","data": 0.8},{"category": "Nov","data": 0.5},' +
   '{"category": "Dec","data": 0.2}]}'
 
-const diagram = JSON.parse(diagram_json).bars
+const diagram = JSON.parse(diagramJson).bars
 const densityCanvas = document.querySelector('#densityChart')
 const di = []
 const cat = []
@@ -64,6 +64,39 @@ const barChart = new Chart(densityCanvas, {
   },
   options: chartOptions,
 })
+
+const ul = document.querySelector('#employees_list')
+const url = 'https://randomuser.me/api?results=6'
+
+function createNode(element) {
+  return document.createElement(element)
+}
+
+function append(parent, el) {
+  return parent.appendChild(el)
+}
+
+fetch(url)
+  .then((resp) => resp.json())
+  .then((data) => {
+    const employees = data.results
+    return employees.map((employee) => {
+      const li = createNode('li')
+      const img = createNode('img')
+      const span = createNode('span')
+
+      img.src = employee.picture.medium
+      span.innerHTML = `${employee.name.first} ${employee.name.last}`
+
+      append(li, img)
+      append(li, span)
+      append(ul, li)
+    })
+  })
+
+  .catch((error) => {
+    console.log(error)
+  })
 
 const sliders_json =
   '{"slides": [{"img": "https://i0.wp.com/theverybesttop10.com/wp-content/uploads/2014/10/Top-10-Images-of-Angry-Wet-Cats-6.jpg?fit=586%2C404&ssl=1","info": "Новость","title": "Минобороны: ВКС России уничтожили крупный арсенал украинских войск в Кривом Роге"},' +
